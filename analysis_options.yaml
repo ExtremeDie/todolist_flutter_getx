@@ -12,3 +12,4 @@ linter:
   rules:
     unnecessary_overrides: false
     prefer_const_constructors: false
+    prefer_single_quotes: true
