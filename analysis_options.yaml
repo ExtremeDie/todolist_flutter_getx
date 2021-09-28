@@ -11,3 +11,4 @@ analyzer:
 linter:
   rules:
     unnecessary_overrides: false
+    prefer_const_constructors: false
