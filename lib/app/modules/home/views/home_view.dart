@@ -51,7 +51,7 @@ class HomeView extends GetView<HomeController> {
             ),
             IconButton(
                 onPressed: () {
-                  Get.to(LoginView());
+                  Get.toNamed('/login');
                 },
                 icon: Icon(Icons.ac_unit))
           ],

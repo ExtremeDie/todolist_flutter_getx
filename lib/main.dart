@@ -1,5 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -27,11 +28,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder: (context, orientation, deviceType) {
+    return Sizer(
+        // designSize: Size(1080, 1920),
+        builder: (context, orien, type) {
       return GetMaterialApp(
         title: 'todolist_flutter_getx',
-        // initialRoute: AppPages.initial,
-        home: HomeView(),
+        initialRoute: AppPages.initial,
+        // home: HomeView(),
         getPages: AppPages.routes,
         debugShowCheckedModeBanner: false,
         theme: FlexColorScheme.light(
