@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:todolist_flutter_getx/app/modules/login/views/login_view.dart';
 import 'package:todolist_flutter_getx/app/modules/shared/services/global_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,9 +43,18 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+        child: Column(
+          children: [
+            Text(
+              'HomeView is working',
+              style: TextStyle(fontSize: 20),
+            ),
+            IconButton(
+                onPressed: () {
+                  Get.to(LoginView());
+                },
+                icon: Icon(Icons.ac_unit))
+          ],
         ),
       ),
     );
