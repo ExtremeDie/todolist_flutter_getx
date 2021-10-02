@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 
 import 'package:get/get.dart';
@@ -10,7 +11,8 @@ import '../controllers/login_controller.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  LoginView({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,62 @@ class LoginView extends GetView<LoginController> {
             padding: EdgeInsets.all(appPadding_16),
             decoration: BoxDecoration(
                 borderRadius: appBorderRadius, color: Colors.green),
-            child: Text('test'),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FormBuilder(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    children: [
+                      FormBuilderTextField(
+                        name: 'email',
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                        ),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                          FormBuilderValidators.email(context),
+                        ]),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      FormBuilderTextField(
+                        name: 'password',
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                        ),
+                        obscureText: true,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(context),
+                          FormBuilderValidators.minLength(context, 8),
+                        ]),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      FormBuilderCheckbox(
+                        name: 'remember',
+                        initialValue: false,
+                        title: Text('Remember Me'),
+                      ),
+                    ],
+                  ),
+                ),
+                MaterialButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    _formKey.currentState!.save();
+                    if (_formKey.currentState!.validate()) {
+                      print(_formKey.currentState!.value);
+                    } else {
+                      print('validation failed');
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       );

@@ -13,3 +13,4 @@ linter:
     unnecessary_overrides: false
     prefer_const_constructors: false
     prefer_single_quotes: true
+    prefer_const_literals_to_create_immutables: false
